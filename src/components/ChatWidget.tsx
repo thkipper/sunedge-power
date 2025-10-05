@@ -65,10 +65,10 @@ export default function ChatWidget() {
       <div className="fixed bottom-6 right-6 z-50">
         <button
           onClick={() => setIsOpen(true)}
-          className="bg-blue-600 text-white px-6 py-3 rounded-full shadow-lg hover:bg-blue-700 transition flex items-center gap-2"
+          className="bg-gradient-to-r from-orange-500 to-yellow-500 text-white px-8 py-4 rounded-full shadow-2xl hover:from-orange-600 hover:to-yellow-600 transition transform hover:scale-110 flex items-center gap-3 animate-bounce"
         >
-          <span className="text-2xl">💬</span>
-          <span className="font-semibold">Chat with Sunny</span>
+          <span className="text-3xl">☀️</span>
+          <span className="font-bold text-lg">Chat with Sunny</span>
         </button>
       </div>
     );
@@ -77,10 +77,10 @@ export default function ChatWidget() {
   return (
     <div className="fixed bottom-6 right-6 z-50 w-96 h-[600px] bg-white rounded-lg shadow-2xl flex flex-col">
       {/* Header */}
-      <div className="bg-blue-600 text-white p-4 rounded-t-lg flex justify-between items-center">
+      <div className="bg-gradient-to-r from-orange-500 to-yellow-500 text-white p-4 rounded-t-lg flex justify-between items-center">
         <div>
-          <h3 className="font-bold text-lg">Sunny ☀️</h3>
-          <p className="text-sm text-blue-100">Your Solar Assistant</p>
+          <h3 className="font-bold text-xl">Sunny ☀️</h3>
+          <p className="text-sm text-orange-100">Your Solar Assistant</p>
         </div>
         <div className="flex gap-2">
           <button
@@ -118,14 +118,14 @@ export default function ChatWidget() {
               <div
                 className={`max-w-[80%] rounded-lg px-4 py-2 ${
                   msg.isViewer
-                    ? 'bg-blue-600 text-white'
-                    : 'bg-gray-100 text-gray-900'
+                    ? 'bg-gradient-to-r from-orange-500 to-yellow-500 text-white'
+                    : 'bg-gradient-to-r from-yellow-50 to-orange-50 text-gray-900 border border-orange-200'
                 }`}
               >
                 <p className="text-sm whitespace-pre-wrap">{msg.text}</p>
                 <p
                   className={`text-xs mt-1 ${
-                    msg.isViewer ? 'text-blue-100' : 'text-gray-500'
+                    msg.isViewer ? 'text-orange-100' : 'text-gray-500'
                   }`}
                 >
                   {new Date(msg.timestamp).toLocaleTimeString()}
@@ -144,13 +144,13 @@ export default function ChatWidget() {
             onChange={(e) => setInputText(e.target.value)}
             onKeyPress={handleKeyPress}
             placeholder="Ask about solar power..."
-            className="flex-1 border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
+            className="flex-1 border border-gray-300 rounded-lg px-3 py-2 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none bg-white"
             rows={2}
           />
           <button
             onClick={handleSend}
             disabled={!inputText.trim()}
-            className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition disabled:bg-gray-300 disabled:cursor-not-allowed"
+            className="bg-gradient-to-r from-orange-500 to-yellow-500 text-white px-4 py-2 rounded-lg hover:from-orange-600 hover:to-yellow-600 transition disabled:bg-gray-300 disabled:cursor-not-allowed font-bold"
           >
             Send
           </button>

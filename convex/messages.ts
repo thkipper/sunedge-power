@@ -1,5 +1,5 @@
 import { v } from "convex/values";
-import { mutation, query, internalMutation } from "./_generated/server";
+import { mutation, query, internalMutation, internalAction } from "./_generated/server";
 import { internal } from "./_generated/api";
 
 /**
@@ -40,43 +40,57 @@ export const send = mutation({
     });
 
     // Trigger AI response asynchronously
-    await ctx.scheduler.runAfter(0, internal.messages.generateAIResponse, {
+    await ctx.scheduler.runAfter(0, internal.messages.generateAIResponseAction, {
       sessionId,
       userMessage: text,
     });
   },
 });
 
-// Internal action to generate and save AI response (called by scheduler)
-export const generateAIResponse = internalMutation({
+// Internal action to call AI and generate response
+export const generateAIResponseAction = internalAction({
   args: {
     sessionId: v.string(),
     userMessage: v.string(),
   },
   handler: async (ctx, { sessionId, userMessage }) => {
     try {
-      // For now, use a simple response until we connect AI
-      // TODO: Call AI action once Gemini API key is configured
-      const aiResponse = `Thanks for your message about "${userMessage.substring(0, 50)}${userMessage.length > 50 ? '...' : ''}"! I'm Sunny, your solar assistant. How can I help you learn about solar power today?`;
+      // Call Gemini AI to generate response
+      const aiResponse = await ctx.runAction(internal.actions.ai.generateResponse, {
+        message: userMessage,
+        provider: "auto",
+      });
 
-      // Save AI response to database
-      await ctx.db.insert("messages", {
+      // Save AI response to database via mutation
+      await ctx.runMutation(internal.messages.saveAIResponse, {
         sessionId,
-        isViewer: false,
         text: aiResponse,
-        timestamp: Date.now(),
       });
     } catch (error) {
       console.error("Failed to generate AI response:", error);
 
-      // Fallback error message
-      await ctx.db.insert("messages", {
+      // Save fallback error message
+      await ctx.runMutation(internal.messages.saveAIResponse, {
         sessionId,
-        isViewer: false,
         text: "Hi! I'm Sunny. I'm having trouble connecting right now. Please try again in a moment, or contact SunEdge Power directly for immediate assistance!",
-        timestamp: Date.now(),
       });
     }
+  },
+});
+
+// Internal mutation to save AI response to database
+export const saveAIResponse = internalMutation({
+  args: {
+    sessionId: v.string(),
+    text: v.string(),
+  },
+  handler: async (ctx, { sessionId, text }) => {
+    await ctx.db.insert("messages", {
+      sessionId,
+      isViewer: false,
+      text,
+      timestamp: Date.now(),
+    });
   },
 });
 
