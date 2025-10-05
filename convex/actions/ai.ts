@@ -1,6 +1,6 @@
 "use node";
 
-import { action } from "../_generated/server";
+import { internalAction } from "../_generated/server";
 import { v } from "convex/values";
 
 /**
@@ -148,7 +148,7 @@ Respond as Sunny:`;
 /**
  * Main AI action - intelligently routes to best provider
  */
-export const generateResponse = action({
+export const generateResponse = internalAction({
   args: {
     message: v.string(),
     provider: v.optional(v.union(
