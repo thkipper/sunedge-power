@@ -1,12 +1,13 @@
 import { v } from "convex/values";
-import { mutation, query } from "./_generated/server";
+import { mutation, query, internalMutation } from "./_generated/server";
+import { internal } from "./_generated/api";
 
 /**
  * Chat Message Functions
  *
- * Basic chat functionality for the AI widget:
+ * AI-powered chat functionality for the solar assistant widget:
  * - List messages for a session
- * - Send user message
+ * - Send user message and trigger AI response
  * - Clear chat history
  */
 
@@ -38,14 +39,46 @@ export const send = mutation({
       timestamp: Date.now(),
     });
 
-    // TODO: Trigger AI response
-    // For now, just echo back
-    await ctx.db.insert("messages", {
+    // Trigger AI response asynchronously
+    await ctx.scheduler.runAfter(0, internal.messages.generateAIResponse, {
       sessionId,
-      isViewer: false,
-      text: `Thanks for your message! I'm Sunny, your solar assistant. How can I help you learn about solar power today?`,
-      timestamp: Date.now(),
+      userMessage: text,
     });
+  },
+});
+
+// Internal mutation to save AI response (called by scheduler)
+export const generateAIResponse = internalMutation({
+  args: {
+    sessionId: v.string(),
+    userMessage: v.string(),
+  },
+  handler: async (ctx, { sessionId, userMessage }) => {
+    try {
+      // Call AI action to generate response
+      const aiResponse = await ctx.runAction(internal.actions.ai.generateResponse, {
+        message: userMessage,
+        provider: "auto",
+      });
+
+      // Save AI response to database
+      await ctx.db.insert("messages", {
+        sessionId,
+        isViewer: false,
+        text: aiResponse,
+        timestamp: Date.now(),
+      });
+    } catch (error) {
+      console.error("Failed to generate AI response:", error);
+
+      // Fallback error message
+      await ctx.db.insert("messages", {
+        sessionId,
+        isViewer: false,
+        text: "Hi! I'm Sunny. I'm having trouble connecting right now. Please try again in a moment, or contact SunEdge Power directly for immediate assistance!",
+        timestamp: Date.now(),
+      });
+    }
   },
 });
 
