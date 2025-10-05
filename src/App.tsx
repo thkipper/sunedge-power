@@ -1,5 +1,5 @@
-import { useState } from 'react';
 import './index.css';
+import ChatWidget from './components/ChatWidget';
 
 export default function App() {
   return (
@@ -58,12 +58,8 @@ export default function App() {
         </div>
       </footer>
 
-      {/* Chat widget placeholder - will add Convex chat later */}
-      <div className="fixed bottom-6 right-6">
-        <button className="bg-blue-600 text-white px-6 py-3 rounded-full shadow-lg hover:bg-blue-700 transition">
-          💬 Chat with us
-        </button>
-      </div>
+      {/* AI Chat Widget */}
+      <ChatWidget />
     </div>
   );
 }
