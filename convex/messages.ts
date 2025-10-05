@@ -47,7 +47,7 @@ export const send = mutation({
   },
 });
 
-// Internal mutation to save AI response (called by scheduler)
+// Internal action to generate and save AI response (called by scheduler)
 export const generateAIResponse = internalMutation({
   args: {
     sessionId: v.string(),
@@ -55,11 +55,9 @@ export const generateAIResponse = internalMutation({
   },
   handler: async (ctx, { sessionId, userMessage }) => {
     try {
-      // Call AI action to generate response
-      const aiResponse = await ctx.runAction(internal.actions.ai.generateResponse, {
-        message: userMessage,
-        provider: "auto",
-      });
+      // For now, use a simple response until we connect AI
+      // TODO: Call AI action once Gemini API key is configured
+      const aiResponse = `Thanks for your message about "${userMessage.substring(0, 50)}${userMessage.length > 50 ? '...' : ''}"! I'm Sunny, your solar assistant. How can I help you learn about solar power today?`;
 
       // Save AI response to database
       await ctx.db.insert("messages", {

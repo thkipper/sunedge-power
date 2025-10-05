@@ -156,7 +156,7 @@ export const generateResponse = action({
       v.literal("auto")
     ))
   },
-  handler: async (ctx, { message, provider = "auto" }) => {
+  handler: async (_ctx, { message, provider = "auto" }) => {
     const prompt = buildSolarPrompt(message);
 
     try {
