@@ -1,13 +1,12 @@
 # SunEdge Power
 
-A clean, modern website for SunEdge Power solar company with an AI-powered chatbot built on Convex.
+A clean, modern website for SunEdge Power solar company built on Convex.
 
 ## Tech Stack
 
 - **Frontend:** Vite + React 18 + TypeScript
 - **Styling:** Tailwind CSS
 - **Backend:** Convex (serverless, real-time database)
-- **AI:** Google Gemini Flash 2.0 (planned)
 - **Deploy:** Vercel
 
 ## Getting Started
@@ -44,12 +43,6 @@ The Convex dashboard will open automatically where you can:
 - Set environment variables
 - Monitor functions
 
-### Environment Variables
-
-Set these in the Convex dashboard (Settings → Environment Variables):
-
-- `GEMINI_API_KEY` - Google AI API key (when ready to add AI)
-
 ## Project Structure
 
 ```
@@ -57,9 +50,7 @@ sunedge-power/
 ├── .claude/agents/          # Claude Code AI agents
 ├── convex/                  # Convex backend
 │   ├── schema.ts           # Database schema
-│   ├── messages.ts         # Chat functions
-│   ├── leads.ts            # Lead management
-│   └── actions/            # External API calls (future)
+│   └── leads.ts            # Lead management
 ├── src/
 │   ├── components/         # React components
 │   ├── App.tsx            # Main app component
@@ -74,11 +65,9 @@ sunedge-power/
 - ✅ Homepage with solar info
 - ✅ Basic navigation
 - ✅ Convex database setup
-- ✅ Chat message schema
 - ✅ Lead capture schema
 
 ### Planned
-- 🚧 AI chatbot (Convex + Gemini)
 - 🚧 Contact form integration
 - 🚧 About page (two partners)
 - 🚧 Services page
@@ -110,7 +99,6 @@ npx convex env set      # Set environment variables
 ## Learning Resources
 
 - [Convex Docs](https://docs.convex.dev)
-- [Convex AI Chat Example](https://github.com/get-convex/convex-ai-chat) - The reference we're learning from
 - [Vite Docs](https://vitejs.dev)
 - [Tailwind CSS](https://tailwindcss.com)
 

@@ -225,7 +225,6 @@ Located in: `.claude/agents/`
 **Responsibilities:**
 - Build website features
 - Convex integration
-- Chat widget development
 - Responsive design with Tailwind
 
 ### 2. solar-content-expert.md
@@ -237,7 +236,6 @@ Located in: `.claude/agents/`
 
 **Responsibilities:**
 - Website content creation
-- Chatbot response design
 - Solar education materials
 - Lead qualification strategies
 
