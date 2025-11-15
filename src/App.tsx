@@ -89,7 +89,7 @@ export default function App() {
               </h1>
 
               <p className="text-xl sm:text-2xl text-gray-300 mb-10 max-w-4xl mx-auto leading-relaxed">
-                19 years of construction excellence. 5+ MW of commercial solar capacity across Florida.
+                19 years of construction excellence. 5+ MW of commercial solar installed to date.
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
