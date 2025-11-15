@@ -89,7 +89,7 @@ export default function App() {
               </h1>
 
               <p className="text-xl sm:text-2xl text-gray-300 mb-10 max-w-4xl mx-auto leading-relaxed">
-                19 years of construction excellence. 500+ projects deployed. 15+ MW of commercial solar capacity across Florida.
+                19 years of construction excellence. 5+ MW of commercial solar capacity across Florida.
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
@@ -113,37 +113,19 @@ export default function App() {
         {/* Stats Dashboard */}
         <div className="bg-white py-12 sm:py-16 border-b border-gray-200">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 sm:gap-12 max-w-4xl mx-auto">
               <div className="text-center">
-                <div className="text-4xl sm:text-5xl font-bold text-amber-600 mb-2">500+</div>
-                <div className="text-sm sm:text-base text-gray-600 font-semibold">Projects Completed</div>
-              </div>
-              <div className="text-center">
-                <div className="text-4xl sm:text-5xl font-bold text-cyan-600 mb-2">15+ MW</div>
+                <div className="text-4xl sm:text-5xl font-bold text-cyan-600 mb-2">5+ MW</div>
                 <div className="text-sm sm:text-base text-gray-600 font-semibold">Solar Capacity Installed</div>
               </div>
               <div className="text-center">
-                <div className="text-4xl sm:text-5xl font-bold text-slate-700 mb-2">19 Years</div>
+                <div className="text-4xl sm:text-5xl font-bold text-amber-600 mb-2">19 Years</div>
                 <div className="text-sm sm:text-base text-gray-600 font-semibold">Industry Experience</div>
               </div>
-              <div className="text-center col-span-2 lg:col-span-1">
+              <div className="text-center">
                 <div className="text-4xl sm:text-5xl font-bold text-green-600 mb-2">100%</div>
                 <div className="text-sm sm:text-base text-gray-600 font-semibold">Licensed & Insured</div>
               </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Trust Bar */}
-        <div className="bg-slate-50 py-12 border-b border-gray-200">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h3 className="text-lg sm:text-xl text-gray-600 font-semibold mb-6">
-              Trusted Installation Partner for Leading Solar Companies & EPCs
-            </h3>
-            <div className="flex flex-wrap justify-center items-center gap-8 text-gray-400">
-              <div className="text-2xl font-bold">CLIENT LOGOS</div>
-              <div className="text-2xl font-bold">TO BE ADDED</div>
-              <div className="text-2xl font-bold">HERE</div>
             </div>
           </div>
         </div>
@@ -258,7 +240,7 @@ export default function App() {
                 <div className="flex gap-2 flex-wrap mt-6">
                   <span className="bg-amber-100 text-amber-800 px-3 sm:px-4 py-2 rounded-full text-xs sm:text-sm font-bold">Class A Contractor</span>
                   <span className="bg-blue-100 text-blue-800 px-3 sm:px-4 py-2 rounded-full text-xs sm:text-sm font-bold">19+ Years</span>
-                  <span className="bg-green-100 text-green-800 px-3 sm:px-4 py-2 rounded-full text-xs sm:text-sm font-bold">Founder</span>
+                  <span className="bg-green-100 text-green-800 px-3 sm:px-4 py-2 rounded-full text-xs sm:text-sm font-bold">Heavy Equipment Expert</span>
                   <span className="bg-purple-100 text-purple-800 px-3 sm:px-4 py-2 rounded-full text-xs sm:text-sm font-bold">Construction Expert</span>
                 </div>
               </div>
@@ -295,8 +277,8 @@ export default function App() {
                 <div className="flex gap-2 flex-wrap mt-6">
                   <span className="bg-cyan-100 text-cyan-800 px-3 sm:px-4 py-2 rounded-full text-xs sm:text-sm font-bold">Solar Operations</span>
                   <span className="bg-amber-100 text-amber-800 px-3 sm:px-4 py-2 rounded-full text-xs sm:text-sm font-bold">8+ Years</span>
-                  <span className="bg-green-100 text-green-800 px-3 sm:px-4 py-2 rounded-full text-xs sm:text-sm font-bold">Commercial Expert</span>
-                  <span className="bg-purple-100 text-purple-800 px-3 sm:px-4 py-2 rounded-full text-xs sm:text-sm font-bold">Microgrid Specialist</span>
+                  <span className="bg-purple-100 text-purple-800 px-3 sm:px-4 py-2 rounded-full text-xs sm:text-sm font-bold">On-Time Delivery</span>
+                  <span className="bg-green-100 text-green-800 px-3 sm:px-4 py-2 rounded-full text-xs sm:text-sm font-bold">Residential & Commercial Expert</span>
                 </div>
               </div>
             </div>

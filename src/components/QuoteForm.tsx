@@ -1,6 +1,4 @@
 import { useState } from 'react';
-import { useMutation } from 'convex/react';
-import { api } from '../../convex/_generated/api';
 
 interface QuoteFormProps {
   isOpen: boolean;
@@ -15,33 +13,44 @@ export default function QuoteForm({ isOpen, onClose }: QuoteFormProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
 
-  const submitLead = useMutation(api.leads.submit);
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
 
     try {
-      await submitLead({
-        name,
-        email,
-        phone: phone || undefined,
-        message,
-        source: 'homepage-quote-button',
+      // Using Web3Forms - free email service
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          access_key: 'YOUR_WEB3FORMS_KEY_HERE', // You'll add this
+          name,
+          email,
+          phone: phone || 'Not provided',
+          message,
+          from_name: 'SunEdge Power Website',
+          subject: 'New Partnership Inquiry from SunEdge Website',
+        }),
       });
 
-      setIsSuccess(true);
-      setTimeout(() => {
-        onClose();
-        setIsSuccess(false);
-        setName('');
-        setEmail('');
-        setPhone('');
-        setMessage('');
-      }, 2000);
+      if (response.ok) {
+        setIsSuccess(true);
+        setTimeout(() => {
+          onClose();
+          setIsSuccess(false);
+          setName('');
+          setEmail('');
+          setPhone('');
+          setMessage('');
+        }, 2000);
+      } else {
+        throw new Error('Form submission failed');
+      }
     } catch (error) {
-      console.error('Error submitting lead:', error);
-      alert('Sorry, something went wrong. Please try again.');
+      console.error('Error submitting form:', error);
+      alert('Sorry, something went wrong. Please try again or email us directly.');
     } finally {
       setIsSubmitting(false);
     }
